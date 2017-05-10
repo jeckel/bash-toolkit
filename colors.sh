@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-
 # ----------------------------------------------------------
 # Define common colors and styles
+#
+# @see http://www.tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html
 #
 readonly RED='\033[0;31m'
 readonly GREEN='\033[0;32m'
