@@ -1,8 +1,19 @@
 #!/usr/bin/env bash
 
 # ======================================================================================================================
+# Author: Julien Mercier
+# Email: jeckel@jeckel.fr
+# License: MIT
+#
 # Log management functions
 
+if ! declare -f module &>/dev/null; then
+	echo "This file should not be loaded directly, load 'main.sh' and the use the 'module' function"
+fi
+
+# ----------------------------------------------------------
+# Load required modules
+module colors
 
 # ----------------------------------------------------------
 # Constants

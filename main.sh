@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-declare -A BT_loaded_modules
+# Author: Julien Mercier
+# Email: jeckel@jeckel.fr
+# License: MIT
+
+BT_loaded_modules=()
 
 # ----------------------------------------------------------
 # Return current library absolute path
@@ -36,11 +40,11 @@ function module() {
 	for i in "${BT_loaded_modules[@]}"
 	do
 		if [ "$i" == "$MODULE" ] ; then
-			echo "Already loaded"
+#			echo "Already loaded"
 			return
 		fi
 	done
-	BT_loaded_modules+="$MODULE"
+	BT_loaded_modules+=(${MODULE})
 	source "$BT_LIB_PATH/$MODULE.sh"
 }
 

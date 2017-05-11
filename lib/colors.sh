@@ -1,9 +1,18 @@
 #!/usr/bin/env bash
-# ----------------------------------------------------------
+
+# ======================================================================================================================
+# Author: Julien Mercier
+# Email: jeckel@jeckel.fr
+# License: MIT
+#
 # Define common colors and styles
 #
 # @see http://www.tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html
-#
+
+if ! declare -f module &>/dev/null; then
+	echo "This file should not be loaded directly, load 'main.sh' and the use the 'module' function"
+fi
+
 readonly RED='\033[0;31m'
 readonly GREEN='\033[0;32m'
 readonly ORANGE='\033[0;33m'
