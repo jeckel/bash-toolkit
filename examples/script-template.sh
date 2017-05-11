@@ -17,8 +17,7 @@ readonly DFL_FILE=$0
 # ----------------------------------------------------------
 # Import common functions
 #
-#source $BIN/common.sh
-
+source ../main.sh
 
 
 # ----------------------------------------------------------
