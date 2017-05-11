@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+declare -A BT_loaded_modules
+
 # ----------------------------------------------------------
 # Return current library absolute path
 #
@@ -25,9 +27,28 @@ function get_main_path
 BT_PATH=$(get_main_path)
 BT_LIB_PATH="$BT_PATH/lib"
 
+# Load a module if not already loaded
+#
+# @param module name
+# @variable BT_loaded_modules Add loaded modules
+function module() {
+	local MODULE=$1
+	for i in "${BT_loaded_modules[@]}"
+	do
+		if [ "$i" == "$MODULE" ] ; then
+			echo "Already loaded"
+			return
+		fi
+	done
+	BT_loaded_modules+="$MODULE"
+	source "$BT_LIB_PATH/$MODULE.sh"
+}
+
+
+
 # ----------------------------------------------------------
 # Load libraries
 #
-source "$BT_LIB_PATH/colors.sh"
-source "$BT_LIB_PATH/logs.sh"
-source "$BT_LIB_PATH/docker.sh"
+#module colors
+#module logs
+#module docker
