@@ -7,10 +7,10 @@
 
 # ----------------------------------------------------------
 # Declare global variables
-BT_loaded_modules=()
 if [ -z $BT_PATH ]; then
 	declare BT_PATH
 fi
+BT_loaded_modules=()
 BT_LIB_PATH=""
 
 # ----------------------------------------------------------

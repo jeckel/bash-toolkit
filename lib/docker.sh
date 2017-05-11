@@ -84,6 +84,60 @@ function is_container_running() {
 }
 
 # ----------------------------------------------------------
+# Start a container
+# Usage :
+#   start_container foobar
+#
+# @param    Container name
+# @variable -
+function start_container() {
+    local CONTAINER=$1
+
+	if ! check_docker_daemon; then
+		error "A working docker daemon is required. Exiting"
+		exit 1
+	fi
+
+	start_stepped_log "Starting container '${BLUE_B}${CONTAINER}${NC}' : "
+	add_stepped_log "Starting"
+
+    if is_container_running ${CONTAINER}; then
+        end_stepped_log "${GREEN_B}Done${NC}"
+        return
+    fi
+
+    docker start ${CONTAINER} &>/dev/null
+    sleep 1
+    if is_container_running ${CONTAINER}; then
+        end_stepped_log "${GREEN_B}Done${NC}"
+    else
+        end_stepped_log "${RED_B}Failed${NC}"
+        error "Container '${BLUE_B}${CONTAINER}${NC}' failed to start"
+        return 1
+    fi
+}
+
+# ----------------------------------------------------------
+# Stop a container
+# Usage :
+#   stop_container foobar
+#
+# @param    Container name
+# @variable -
+function stop_container() {
+    local CONTAINER=$1
+
+	if ! check_docker_daemon; then
+		error "A working docker daemon is required. Exiting"
+		exit 1
+	fi
+
+	start_stepped_log "Stopping container '${BLUE_B}${CONTAINER}${NC}' : "
+    docker stop ${CONTAINER} &>/dev/null
+    end_stepped_log "${GREEN_B}Done${NC}"
+}
+
+# ----------------------------------------------------------
 # Display container status
 # Usage :
 #   container_status Container_Name
@@ -100,11 +154,11 @@ function container_status() {
 
 	if is_container_created ${CONTAINER}; then
 		if is_container_running ${CONTAINER}; then
-			info "Container ${BLUE_B}${CONTAINER}${NC} is ${GREEN_B}created${NC} and ${GREEN_B}running${NC}"
+			info "Container '${BLUE_B}${CONTAINER}${NC}' is ${GREEN_B}created${NC} and ${GREEN_B}running${NC}"
 		else
-			info "Container ${BLUE_B}${CONTAINER}${NC} is ${GREEN_B}created${NC} and ${RED_B}NOT running${NC}"
+			info "Container '${BLUE_B}${CONTAINER}${NC}' is ${GREEN_B}created${NC} and ${RED_B}NOT running${NC}"
 		fi
 	else
-		info "Container ${BLUE_B}${CONTAINER}${NC} is ${RED_B}NOT created${NC}"
+		info "Container '${BLUE_B}${CONTAINER}${NC}' is ${RED_B}NOT created${NC}"
 	fi
 }
