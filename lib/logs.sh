@@ -21,7 +21,6 @@ readonly LOG_DEBUG=0
 readonly LOG_INFO=1
 readonly LOG_WARNING=2
 readonly LOG_ERROR=3
-readonly LOG_PREFIX=("${BOLD}DBG${NC}" "${BLUE_B}INF${NC}" "${ORANGE_B}WRN${NC}" "${RED_B}ERR${NC}")
 readonly LOG_PAGE_WITH=80
 readonly LOG_PADDING=15
 
@@ -30,6 +29,7 @@ readonly LOG_PADDING=15
 LOG_LEVEL="$LOG_INFO"
 LOG_STEP=false
 LOG_STEP_LEVEL="$LOG_INFO"
+LOG_PREFIX=("${BOLD}DBG${NC}" "${BLUE_B}INF${NC}" "${ORANGE_B}WRN${NC}" "${RED_B}ERR${NC}")
 
 
 # ----------------------------------------------------------
