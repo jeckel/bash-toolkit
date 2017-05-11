@@ -8,7 +8,9 @@
 # ----------------------------------------------------------
 # Declare global variables
 BT_loaded_modules=()
-BT_PATH=""
+if [ -z $BT_PATH ]; then
+	declare BT_PATH
+fi
 BT_LIB_PATH=""
 
 # ----------------------------------------------------------
@@ -43,7 +45,7 @@ function module() {
 	local MODULE=$1
 	for i in "${BT_loaded_modules[@]}"
 	do
-		if [ "$i" == "$MODULE" ] ; then
+		if [[ "$i" == "$MODULE" ]] ; then
 			return
 		fi
 	done
@@ -60,7 +62,9 @@ function module() {
 # @variable $BT_PATH is updated
 # @variable $BT_LIB_PATH is updated
 function __init() {
-	BT_PATH=$(get_main_path)
+	if [ -z $BT_PATH ]; then
+		BT_PATH=$(get_main_path)
+	fi
 	BT_LIB_PATH="$BT_PATH/lib"
 }
 

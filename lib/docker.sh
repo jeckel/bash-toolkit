@@ -24,7 +24,7 @@ module logs
 # @param 	-
 # @variable -
 function check_docker_daemon() {
-	if [ "x$(which docker)" == "x" ]; then
+	if [[ "x$(which docker)" == "x" ]]; then
 		warning "Missing docker binary"
 		return 1
 	fi
@@ -77,7 +77,7 @@ function is_container_running() {
 		# container not found, not created or error during Inspect
 		return 1
 	fi
-	if [ "$RUNNING" == "false" ]; then
+	if [[ "$RUNNING" == "false" ]]; then
 		return 1
 	fi
 	return 0

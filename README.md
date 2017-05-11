@@ -22,3 +22,7 @@ Bash scripts and tools
 
 ### Misc
 * [10 tools to add some spice to your UNIX shell scripts](https://www.cyberciti.biz/tips/spice-up-your-unix-linux-shell-scripts.html)
+
+### Bash Framework
+* [Bashinator](https://github.com/wschlich/bashinator)
+* [Bashworks](https://github.com/jpic/bashworks)
