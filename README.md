@@ -11,6 +11,7 @@ Bash scripts and tools
 * [Conditions in Bash scripting (`if` statements)](https://linuxacademy.com/blog/linux/conditions-in-bash-scripting-if-statements/)
 * [4 bash `if` statements example](http://www.thegeekstuff.com/2010/06/bash-if-statement-examples/)
 * [ANSI Escape Sequences](http://www.tldp.org/HOWTO/Bash-Prompt-HOWTO/c327.html)
+* [Returning values from Bash functions](http://www.linuxjournal.com/content/return-values-bash-functions)
 
 ### Makefile
 * [Makefile statements](http://makepp.sourceforge.net/1.19/makepp_statements.html)
