@@ -1,16 +1,23 @@
 #!/usr/bin/env bash
 
+# ======================================================================================================================
 # Author: Julien Mercier
 # Email: jeckel@jeckel.fr
 # License: MIT
 
+# ----------------------------------------------------------
+# Declare global variables
 BT_loaded_modules=()
+BT_PATH=""
+BT_LIB_PATH=""
 
 # ----------------------------------------------------------
 # Return current library absolute path
-#
-# Usage :
+# @usage
 #    PATH=$(get_main_path)
+#
+# @param    -
+# @variable -
 function get_main_path
 {
     local SOURCE="${BASH_SOURCE[0]}"
@@ -26,21 +33,17 @@ function get_main_path
 }
 
 # ----------------------------------------------------------
-# Define paths
-#
-BT_PATH=$(get_main_path)
-BT_LIB_PATH="$BT_PATH/lib"
-
 # Load a module if not already loaded
+# @usage
+#	module logs
 #
-# @param module name
-# @variable BT_loaded_modules Add loaded modules
+# @param    module name
+# @variable $BT_loaded_modules is read and update
 function module() {
 	local MODULE=$1
 	for i in "${BT_loaded_modules[@]}"
 	do
 		if [ "$i" == "$MODULE" ] ; then
-#			echo "Already loaded"
 			return
 		fi
 	done
@@ -48,7 +51,20 @@ function module() {
 	source "$BT_LIB_PATH/$MODULE.sh"
 }
 
+# ----------------------------------------------------------
+# Initialize library
+# @usage
+#	__init
+#
+# @param    -
+# @variable $BT_PATH is updated
+# @variable $BT_LIB_PATH is updated
+function __init() {
+	BT_PATH=$(get_main_path)
+	BT_LIB_PATH="$BT_PATH/lib"
+}
 
+__init
 
 # ----------------------------------------------------------
 # Load libraries

@@ -82,3 +82,29 @@ function is_container_running() {
 	fi
 	return 0
 }
+
+# ----------------------------------------------------------
+# Display container status
+# Usage :
+#   container_status Container_Name
+#
+# @param    Container name
+# @variable -
+function container_status() {
+	local CONTAINER=$1
+
+	if ! check_docker_daemon; then
+		error "A working docker daemon is required. Exiting"
+		exit 1
+	fi
+
+	if is_container_created ${CONTAINER}; then
+		if is_container_running ${CONTAINER}; then
+			info "Container ${BLUE_B}${CONTAINER}${NC} is ${GREEN_B}created${NC} and ${GREEN_B}running${NC}"
+		else
+			info "Container ${BLUE_B}${CONTAINER}${NC} is ${GREEN_B}created${NC} and ${RED_B}NOT running${NC}"
+		fi
+	else
+		info "Container ${BLUE_B}${CONTAINER}${NC} is ${RED_B}NOT created${NC}"
+	fi
+}

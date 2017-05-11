@@ -44,12 +44,4 @@ fi
 
 declare -r CONTAINER_NAME=${1:-FooBar}
 
-if is_container_created ${CONTAINER_NAME}; then
-	if is_container_running ${CONTAINER_NAME}; then
-		info "Container ${BLUE_B}${CONTAINER_NAME}${NC} is ${GREEN_B}created${NC} and ${GREEN_B}running${NC}"
-	else
-		info "Container ${BLUE_B}${CONTAINER_NAME}${NC} is ${GREEN_B}created${NC} and ${RED_B}NOT running${NC}"
-	fi
-else
-	info "Container ${BLUE_B}${CONTAINER_NAME}${NC} is ${RED_B}NOT created${NC}"
-fi
+container_status ${CONTAINER_NAME}
