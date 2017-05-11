@@ -1,0 +1,16 @@
+# EditorConfig is a normalisation file compatible with different editors
+# Find more documentation here : http://editorconfig.org/#download
+
+# top-most EditorConfig file
+root = true
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+charset = utf-8
+
+# Bash script
+[*.sh]
+indent_style = tab
+indent_size = 4
+trim_trailing_whitespace = true
