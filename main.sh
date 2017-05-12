@@ -6,12 +6,23 @@
 # License: MIT
 
 # ----------------------------------------------------------
+# Environment variables
+#
+# This variables can be set from outsite this ToolKit to setup
+# default values or change default behaviour
+# All this environment variables should start by BTK
+#
+# BTK_PATH : this variable can be set to force the path to the ToolKit
+
+
+# ----------------------------------------------------------
 # Declare global variables
-if [ -z $BT_PATH ]; then
-	declare BT_PATH
-fi
-BT_loaded_modules=()
-BT_LIB_PATH=""
+#
+# All global variables related by this ToolKit should start by __BTK
+
+__BTK_PATH=${BTK_PATH:-""}      # Absolute path to the current ToolKit main.sh
+__BTK_LOADED_MODULES=()         # List of loaded modules
+__BTK_LIB_PATH=""               # Absolute path to the library folder
 
 # ----------------------------------------------------------
 # Return current library absolute path
@@ -40,17 +51,18 @@ function get_main_path
 #	module logs
 #
 # @param    module name
-# @variable $BT_loaded_modules is read and update
+# @variable $__BTK_LOADED_MODULES is read and updated
+# @variable $__BTK_LIB_PATH is read
 function module() {
 	local MODULE=$1
-	for i in "${BT_loaded_modules[@]}"
+	for i in "${__BTK_LOADED_MODULES[@]}"
 	do
 		if [[ "$i" == "$MODULE" ]] ; then
 			return
 		fi
 	done
 	BT_loaded_modules+=(${MODULE})
-	source "$BT_LIB_PATH/$MODULE.sh"
+	source "$__BTK_LIB_PATH/$MODULE.sh"
 }
 
 # ----------------------------------------------------------
@@ -59,13 +71,13 @@ function module() {
 #	__init
 #
 # @param    -
-# @variable $BT_PATH is updated
-# @variable $BT_LIB_PATH is updated
+# @variable $__BT_PATH is updated
+# @variable $__BTK_LIB_PATH is updated
 function __init() {
-	if [ -z $BT_PATH ]; then
-		BT_PATH=$(get_main_path)
+	if [ -z $__BTK_PATH ]; then
+		__BTK_PATH=$(get_main_path)
 	fi
-	BT_LIB_PATH="$BT_PATH/lib"
+	__BTK_LIB_PATH="$__BTK_PATH/lib"
 }
 
 __init
