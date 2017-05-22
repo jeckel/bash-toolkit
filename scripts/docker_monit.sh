@@ -72,7 +72,7 @@ function status_action()
 		return 1
 	fi
 
-	info "Service '${CONTAINER}' is 'running'"
+#	info "Service '${CONTAINER}' is 'running'"
 	get_container_stats ${CONTAINER}
 	return 0
 }
