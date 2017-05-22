@@ -13,6 +13,7 @@
 # All this environment variables should start by BTK
 #
 # BTK_PATH : this variable can be set to force the path to the ToolKit
+# BTK_ENABLE_ANSI : this variable can be set to 'false' to disable usage of ANSI
 
 
 # ----------------------------------------------------------
@@ -23,6 +24,7 @@
 __BTK_PATH=${BTK_PATH:-""}      # Absolute path to the current ToolKit main.sh
 __BTK_LOADED_MODULES=()         # List of loaded modules
 __BTK_LIB_PATH=""               # Absolute path to the library folder
+__BTK_ENABLE_ANSI=${BTK_ENABLE_ANSI:-$(tput colors &> /dev/null)$?}
 
 # ----------------------------------------------------------
 # Return current library absolute path
