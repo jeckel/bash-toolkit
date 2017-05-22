@@ -84,7 +84,6 @@ function is_container_running() {
 }
 
 # ----------------------------------------------------------
-<<<<<<< HEAD
 # Return container's status
 # Usage :
 #   local STATUS=$(get_container_status foobar)
