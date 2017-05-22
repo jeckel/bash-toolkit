@@ -1,4 +1,6 @@
-# bash-tools
+[![Twitter](https://img.shields.io/badge/Twitter-%40jeckel4-blue.svg)](https://twitter.com/intent/user?screen_name=jeckel4) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Julien%20Mercier-blue.svg)](https://www.linkedin.com/in/jeckel/)
+
+# Bash ToolKit
 Bash scripts and tools
 
 
