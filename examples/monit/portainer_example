@@ -1,4 +1,0 @@
-check program docker_portainer with path [path_to_scripts]/docker_monit.sh -s portainer
-      if status != 0 then alert
-      start program "[path_to_scripts]/docker_monit.sh -s portainer start"
-      stop program "[path_to_scripts]/docker_monit.sh -s portainer stop"

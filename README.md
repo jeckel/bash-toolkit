@@ -3,6 +3,57 @@
 # Bash ToolKit
 Bash scripts and tools
 
+## Usages
+
+### In your scripts
+
+To use this toolkit in your own `bash` scripts just start your script with the following lines :
+```bash
+# Load framework
+readonly BIN="$(dirname "$0")"
+source ${BIN}/../main.sh
+```
+
+Replace the path to the `main.sh` according to your installation.
+
+Then you can load the modules you want with the `module` command :
+
+```bash
+module colors
+module logs
+module docker
+```
+
+### In [Monit](https://www.mmonit.com/monit/)'s configuration file for docker
+
+You can use this Toolkit to monitor docker's container with [Monit](https://www.mmonit.com/monit/).
+
+Here is a sample config you can use for monitoring a container named `portainer` :
+
+```monit
+check program docker_portainer with path <path_to_toolkit>/scripts/docker_monit.sh -s portainer
+      if status != 0 then alert
+      start program "<path_to_toolkit>/scripts/docker_monit.sh -s portainer start"
+      stop program "<path_to_toolkit>/scripts/docker_monit.sh -s portainer stop"
+```
+
+Don't forget to replace <path_to_toolkit> with the install directory of this toolkit.
+
+## Modules
+
+### colors
+
+This module is used by other modules, it define some ANSI constants to use colors in your script.
+
+### logs
+
+This module provide a list of usefull methods to display fancy log during the execution of your scripts.
+
+### docker
+
+This module provide a list of function to manipulates docker container, with secure dependencies, and with fancy log messages.
+
+
 
 ## Resources
 
