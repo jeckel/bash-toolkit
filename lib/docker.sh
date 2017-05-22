@@ -84,6 +84,75 @@ function is_container_running() {
 }
 
 # ----------------------------------------------------------
+# Return container's status
+# Usage :
+#   local STATUS=$(get_container_status foobar)
+#
+# @param    Container name
+# @variable -
+function get_container_status() {
+	local CONTAINER=$1
+	docker inspect -f '{{ .State.Status }}' ${CONTAINER}
+}
+
+# ----------------------------------------------------------
+# Return container's stats
+# Usage :
+#   local STATS=$(get_container_stats foobar)
+#
+# @param    Container name
+# @variable -
+function get_container_stats()
+{
+	local CONTAINER=$1
+    docker stats --no-stream ${CONTAINER}
+}
+
+# ----------------------------------------------------------
+# Start a container
+# Usage :
+#   start_container foobar)
+#
+# @param    Container name
+# @variable -
+function start_container()
+{
+    local CONTAINER=$1
+    if ! is_container_created ${CONTAINER} ; then
+    	error "Container '${CONTAINER}' does not exist, unable to start"
+    	return 1
+    fi
+
+    if ! is_container_running ${CONTAINER} ; then
+    	docker start ${CONTAINER} &> /dev/null
+    	return $?
+    fi
+    return 0
+}
+
+# ----------------------------------------------------------
+# Stop a container
+# Usage :
+#   stop_container foobar)
+#
+# @param    Container name
+# @variable -
+function stop_container()
+{
+    local CONTAINER=$1
+    if ! is_container_created ${CONTAINER} ; then
+    	error "Container '${CONTAINER}' does not exist, unable to stop"
+    	return 1
+    fi
+
+    if is_container_running ${CONTAINER} ; then
+    	docker stop ${CONTAINER} &> /dev/null
+    	return $?
+    fi
+    return 0
+}
+
+# ----------------------------------------------------------
 # Display container status
 # Usage :
 #   container_status Container_Name
